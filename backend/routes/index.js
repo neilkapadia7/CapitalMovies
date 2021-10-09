@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const userRoutes = require('@routes/user')
-const formRoutes = require('@routes/forms/index')
+const favouritesRoutes = require('@routes/favourites')
 
 router.use('/user', userRoutes)
-router.use('/forms', formRoutes)
+router.use('/favourites', favouritesRoutes)
 
 router.post('/addUser', (req, res) => {
     res.json({message: 'Hey! Welcome to ProForms'})

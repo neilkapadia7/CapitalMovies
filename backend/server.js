@@ -1,20 +1,19 @@
+require("module-alias/register");
 const express = require('express');
-// import connectDB = './config/db.js'
+const connectDB = require('@config/db.js')
 const dotenv = require('dotenv');
 const path = require('path');
-// import mentorRoutes = './routes/mentorRoutes.js'
-// import taskRoutes = './routes/taskRoutes.js'
+const indexRoute = require('@routes/index');
 
 dotenv.config()
 
 const app = express();
 
-// connectDB();
+connectDB();
 
 app.use(express.json());
 
-// app.use('/api/mentors', mentorRoutes)
-// app.use('/api/tasks', taskRoutes)
+app.use('/api', indexRoute)
 
 // const __dirname = path.resolve()
 // if  (process.env.NODE_ENV === 'production') {

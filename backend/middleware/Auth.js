@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
         if(!user)
             return Responder.respondWithUnauthorised(req, res, "Unauthorized")
 
-        req.user = decodedId
+        req.user = user
         next()
     }
     catch (err) {
