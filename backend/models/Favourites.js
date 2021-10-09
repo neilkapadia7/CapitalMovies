@@ -8,6 +8,7 @@ const favouritesSchema = new mongoose.Schema({
     first_air_date: {type: String},
     poster_path: {type: String},
     name: {type: String},
+    title: {type: String},
     overview: {type: String},
     original_name: {type: String},
     media_type: {type: String},

@@ -12,8 +12,12 @@ module.exports = {
         try {
             const movieId = req.body.id
             const checkUser = await User.findOne({_id: req.user._id});
-            if(checkUser) 
-                return Responder.respondWithFalseSuccess(req, res, {}, 'User Already Exists');
+            if(!checkUser) 
+                return Responder.respondWithFalseSuccess(req, res, {}, 'Invalid Request');
+
+            const checkMovie = await Favourites.findOne({movieId})
+            if(checkMovie) 
+                return Responder.respondWithFalseSuccess(req, res, {}, 'Already Added to Favourites');
 
             const favourites = await new Favourites({
                 ...req.body,
@@ -35,13 +39,14 @@ module.exports = {
 */ 
     async getFavourites (req, res) {    
         try {
-            const checkUser = await User.findOne({email: req.body.email});
-            if(!checkUser)                 
-                return Responder.respondWithFalseSuccess(req, res, {}, "User Doesn't Exist");
+            const checkUser = await User.findOne({_id: req.user._id});
+            if(!checkUser) 
+                return Responder.respondWithFalseSuccess(req, res, {}, 'Invalid Request');
 
             const favourites = await Favourites.find({userId: req.user._id})
+            let count = favourites.length
                 
-            return Responder.respondWithSuccess(req, res, favourites, 'Favourites Fetched')   
+            return Responder.respondWithSuccess(req, res, {favourites, count}, 'Favourites Fetched')   
             
         } catch (err) {
             console.log(err)
