@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "_moduleAliases": {
+    "@root": ".",
+    "@controllers": "./backend/controllers",
+    "@models": "./backend/models",
+    "@service": "./backend/service",
+    "@routes": "./backend/routes",
+    "@config": "./backend/config",
+    "@middleware": "./backend/middleware",
+    "@validation": "./backend/validation"
+  },
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
@@ -17,6 +27,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.10"
   },
   "devDependencies": {
