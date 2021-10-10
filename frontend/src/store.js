@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import {composeWithDevTools} from 'redux-devtools-extension'
 import rootSaga from './sagas'
 import {userAuthenticationReducer} from './reducers/authReducer'
+import {moviesReducer} from './reducers/moviesReducer'
 import setAuthToken from './services/setToken'
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
@@ -19,10 +20,7 @@ const initialState = {
 
 const reducers = combineReducers({
     user: userAuthenticationReducer,
-    // weight: weightReducer,
-    // calorie: calorieReducer,
-    // goals: goalReducer,
-    // workout: workoutReducer,
+    movies: moviesReducer,
 })
 
 

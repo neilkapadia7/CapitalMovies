@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Login from './components/auth/Login';
 import Header from './components/general/Header';
 import Footer from './components/general/Footer';
+import HomeScreen from './components/movies/home';
 
 function App() {
   return (
@@ -10,12 +11,11 @@ function App() {
       <Header />
       <main className='py-5'>
         <Container>
-        <Route path='/login' component={Login} exact/>
-          {/* /api/mentors */}
-          {/* <Route path='/' component={TaskScreen}  exact/>
-          <Route path='/mentors' component={MentorsScreen}  exact/>
-          <Route path='/login' component={Login}  exact/>
-          <Route path='/register' component={Register}  exact/> */}
+          <Route path='/login' component={Login} exact/>
+          <Route path='/discover' component={HomeScreen} exact/>
+          <Route path='/discover/popular' component={HomeScreen} exact/>
+          <Route path='/discover/latest' component={HomeScreen} exact/>
+          <Route path='/discover/favourites' component={HomeScreen} exact/>
         </Container>
       </main>
       <Footer />     

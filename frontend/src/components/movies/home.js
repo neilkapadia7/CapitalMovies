@@ -1,17 +1,42 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom'
 import {Row, Col} from 'react-bootstrap';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Message from '../general/Message';
+import Loader from '../general/Loader';
 import Movie from './Movie'
+import { useLocation } from 'react-router-dom';
+import {trendingMovies, originalsMovies, topRatedMovies} from '../../services/movies'
 
 
 const HomeScreen = (props) => {
+    const dispatch = useDispatch();
+    const [data, setData] = useState(null)
+    const movies = useSelector(state => state.movies);
+    const {loading, error} = movies;
+
+    const location = useLocation()
+
+    useEffect(() => {
+        async function fetchData() {
+            let movies
+            if(location.pathname === '/discover') {
+                movies = await originalsMovies()
+            }
+            else if(location.pathname === '/discover/popular') {
+                movies = await topRatedMovies()
+            } 
+            else if(location.pathname === '/discover/latest') {
+                movies = await trendingMovies();            
+            }
+            console.log(movies)
+        }
+        fetchData();
+    }, [location.pathname])
 
     return (
       <>
-        <h1 className='home-page-heading'>Latest Product</h1>
+        <h1 className='home-page-heading'>Movies</h1>
           {loading ? 
             (<Loader />) 
           : error ? 
@@ -19,13 +44,12 @@ const HomeScreen = (props) => {
           : (
             <>
               <Row>
-                {movies.map(movie => (
+                {data && data.map(movie => (
                     <Col key={movie.id} sm={12} md={6} lg={4} xl={3}>
                       <Movie movie={movie} />
                     </Col>
                 ))}
               </Row>
-              <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
             </>
             )
           }

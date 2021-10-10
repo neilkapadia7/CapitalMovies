@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const trendingMovies = () => {
+export const trendingMovies = async () => {
     try {
-        const res = await axios.get(`${process.env.MOVIESDB_BASE_URL}/trending/all/week?api_key=${process.env.MOVIES_DB_APIKEY}&language=en-US`)
+        const res = await axios.get(`${process.env.REACT_APP_MOVIESDB_BASE_URL}/trending/all/week?api_key=${process.env.REACT_APP_MOVIES_DB_APIKEY}&language=en-US`)
         return res.data;
     } catch (err) {
         console.log(err)
@@ -10,9 +10,9 @@ export const trendingMovies = () => {
     }
 }
 
-export const originalsMovies = () => {
+export const originalsMovies = async () => {
     try {
-        const res = await axios.get(`${process.env.MOVIESDB_BASE_URL}/discover/tv?api_key=${process.env.MOVIES_DB_APIKEY}&with_network=213`)
+        const res = await axios.get(`${process.env.REACT_APP_MOVIESDB_BASE_URL}/discover/tv?api_key=${process.env.REACT_APP_MOVIES_DB_APIKEY}&with_network=213`)
         return res.data;
     } catch (err) {
         console.log(err)
@@ -20,9 +20,9 @@ export const originalsMovies = () => {
     }
 }
 
-export const topRatedMovies = () => {
+export const topRatedMovies = async () => {
     try {
-        const res = await axios.get(`${process.env.MOVIESDB_BASE_URL}/movie/top_rated?api_key=${process.env.MOVIES_DB_APIKEY}&language=en-US`)
+        const res = await axios.get(`${process.env.REACT_APP_MOVIESDB_BASE_URL}/movie/top_rated?api_key=${process.env.REACT_APP_MOVIES_DB_APIKEY}&language=en-US`)
         return res.data;
     } catch (err) {
         console.log(err)

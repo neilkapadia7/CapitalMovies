@@ -3,26 +3,26 @@ import {Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 
-const Movies = ({product}) => {
+const Movies = ({movie}) => {
     return (
         <Card className='my-3 p-3 rounded'>
-            <Link to={`/product/${product._id}`}>
-                <Card.Img src={product.image} variant='top' />
+            <Link to={`/movie/${movie._id}`}>
+                <Card.Img src={movie.image} variant='top' />
             </Link>
 
         <Card.Body>
-            <Link to={`/product/${product._id}`}>
+            <Link to={`/movie/${movie._id}`}>
                 <Card.Title as='div'>
-                    <strong>{product.name}</strong>
+                    <strong>{movie.name}</strong>
                 </Card.Title>
             </Link>
 
             {/* <Card.Text as='div'>
-                <Rating value={product.rating} text={`${product.numReviews} reviews`}/>
+                <Rating value={movie.rating} text={`${movie.numReviews} reviews`}/>
             </Card.Text> */}
 
             <Card.Text as='h3'>
-                ₹{product.price}
+                ₹{movie.price}
             </Card.Text>
         </Card.Body>
         </Card>

@@ -40,12 +40,12 @@ const Header = (props) => {
                     
                     <NavDropdown title='Discover' id='category'>
                         <LinkContainer to='/discover/popular'>
-                            <NavDropdown.Item>Discover</NavDropdown.Item>
+                            <NavDropdown.Item>Popular</NavDropdown.Item>
                         </LinkContainer>  
                         <LinkContainer to='/discover/latest'>
                             <NavDropdown.Item>Latest</NavDropdown.Item>
                         </LinkContainer>  
-                        <LinkContainer to='/discover'>
+                        <LinkContainer to='/discover/favourites'>
                             <NavDropdown.Item>Favourites</NavDropdown.Item>
                         </LinkContainer>  
                     </NavDropdown>
@@ -61,12 +61,12 @@ const Header = (props) => {
                   <>
                   <NavDropdown title='Discover' id='category'>
                     <LinkContainer to='/discover/popular'>
-                        <NavDropdown.Item>Discover</NavDropdown.Item>
+                        <NavDropdown.Item>Popular</NavDropdown.Item>
                     </LinkContainer>  
                     <LinkContainer to='/discover/latest'>
                         <NavDropdown.Item>Latest</NavDropdown.Item>
                     </LinkContainer>  
-                    <LinkContainer to='/discover'>
+                    <LinkContainer to='/discover/favourites'>
                         <NavDropdown.Item>Favourites</NavDropdown.Item>
                     </LinkContainer>  
                   </NavDropdown>
