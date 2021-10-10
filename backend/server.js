@@ -15,19 +15,19 @@ app.use(express.json());
 
 app.use('/api', indexRoute)
 
-// const __dirname = path.resolve()
-// if  (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '/build')))
+const __dirnames = path.resolve()
+if  (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirnames, '/build')))
   
-//     app.get('*', (req, res) =>
-//         res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-//     )
-// }
-// else {
-//     app.get('/', (req, res) => {
-//         res.send('API is running...');
-//     });
-// }
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirnames, 'build', 'index.html'))
+    )
+}
+else {
+    app.get('/', (req, res) => {
+        res.send('API is running...');
+    });
+}
 
 const PORT = process.env.PORT || 3000;
 
