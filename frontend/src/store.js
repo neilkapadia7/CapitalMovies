@@ -2,9 +2,14 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {composeWithDevTools} from 'redux-devtools-extension'
 import rootSaga from './sagas'
+import {userAuthenticationReducer} from './reducers/authReducer'
+import setAuthToken from './services/setToken'
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
-const refreshTokenFromStorage = localStorage.getItem('refresh') ? localStorage.getItem('refresh') : null;
+
+if(userInfoFromStorage) {
+  setAuthToken(userInfoFromStorage.token);
+}
 
 const initialState = {
     user: { 
@@ -13,7 +18,7 @@ const initialState = {
 }
 
 const reducers = combineReducers({
-    // user: userSignReducer,
+    user: userAuthenticationReducer,
     // weight: weightReducer,
     // calorie: calorieReducer,
     // goals: goalReducer,

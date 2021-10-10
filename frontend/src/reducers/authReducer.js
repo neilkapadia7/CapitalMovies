@@ -6,7 +6,7 @@ let initialState = {
     error: null
 }
 
-export const userSignReducer = (state = initialState, action) => {
+export const userAuthenticationReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_SIGNIN:
           return {
