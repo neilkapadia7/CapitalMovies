@@ -1,12 +1,22 @@
-import React from 'react'
-import {Navbar, Nav, Container} from 'react-bootstrap';
+import React, {useEffect} from 'react'
+import { useHistory ,useLocation } from 'react-router-dom';
+import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../../actions/authActions'
 
-const Header = () => {
+const Header = (props) => {
   const user = useSelector(state => state.user);
   const {userInfo} = user;
+
+  const location = useLocation()
+  const history = useHistory()
+
+  useEffect(() => {
+      if(location.pathname === '/') {
+        history.push('/discover')
+      }
+  }, [history, location])
 
   const dispatch = useDispatch();
 
@@ -24,23 +34,44 @@ const Header = () => {
               
                 {userInfo ? (
                   <>
-                    <LinkContainer to='/'exact>
-                      <Nav.Link className='px-4 py-0'>Tasks</Nav.Link>
-                    </LinkContainer>
+                    {/* <LinkContainer to='/'exact>
+                      <Nav.Link>Discover</Nav.Link>
+                    </LinkContainer> */}
+                    
+                    <NavDropdown title='Discover' id='category'>
+                        <LinkContainer to='/discover/popular'>
+                            <NavDropdown.Item>Discover</NavDropdown.Item>
+                        </LinkContainer>  
+                        <LinkContainer to='/discover/latest'>
+                            <NavDropdown.Item>Latest</NavDropdown.Item>
+                        </LinkContainer>  
+                        <LinkContainer to='/discover'>
+                            <NavDropdown.Item>Favourites</NavDropdown.Item>
+                        </LinkContainer>  
+                    </NavDropdown>
+
                     <LinkContainer to='/mentors'  >
-                      <Nav.Link className='px-4 py-0'>Mentors</Nav.Link>
+                      <Nav.Link>Favourites</Nav.Link>
                     </LinkContainer>
-                    <Nav.Link className='px-4 py-0' onClick={() => 
+                    <Nav.Link onClick={() => 
                         dispatch(logout())
                     }>Logout</Nav.Link>
                     </>
                     ) : (
                   <>
-                  <LinkContainer to='/login'  className='px-4 py-0'>
+                  <NavDropdown title='Discover' id='category'>
+                    <LinkContainer to='/discover/popular'>
+                        <NavDropdown.Item>Discover</NavDropdown.Item>
+                    </LinkContainer>  
+                    <LinkContainer to='/discover/latest'>
+                        <NavDropdown.Item>Latest</NavDropdown.Item>
+                    </LinkContainer>  
+                    <LinkContainer to='/discover'>
+                        <NavDropdown.Item>Favourites</NavDropdown.Item>
+                    </LinkContainer>  
+                  </NavDropdown>
+                  <LinkContainer to='/login'>
                     <Nav.Link>Login</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to='/register' className='px-4 py-0'>
-                    <Nav.Link>Register</Nav.Link>
                   </LinkContainer>
                     </>
                 )}

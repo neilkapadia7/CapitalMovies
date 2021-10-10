@@ -20,22 +20,18 @@ export function* userSignInSaga(param) {
 }
 
 export function* userSignUpSaga(param) {
-    let payload = {
-        status:false,
-        message: 'Something Went Wrong'
-    }
-    try {
+      try {
         const response = yield call(AuthService.userSignUp, param.payload);
-        
-        if(response) {
-          console.log('Response SAGA:::', response)
-
-          yield put(AuthActions.userSignUpResult(response.res.data))
+        if(!response.status) {
+          yield put(AuthActions.userSignInError(response.message ? response.message : response.data))
+        }
+        else {
+          yield put(AuthActions.userSignUpResult(response.data))
         }
     
       } catch (error) {
         console.log(error)
-        yield put(AuthActions.userSignInError({...payload}))
+        yield put(AuthActions.userSignInError(error.message))
       }
 }
 
