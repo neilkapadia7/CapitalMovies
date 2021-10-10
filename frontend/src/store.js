@@ -14,7 +14,8 @@ if(userInfoFromStorage) {
 
 const initialState = {
     user: { 
-        userInfo: userInfoFromStorage
+        userInfo: userInfoFromStorage,
+        isLoggedIn: !userInfoFromStorage ? false : true
     }
 }
 

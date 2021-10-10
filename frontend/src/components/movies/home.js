@@ -12,8 +12,12 @@ import {trendingMovies, originalsMovies, topRatedMovies} from '../../services/mo
 const HomeScreen = (props) => {
     const dispatch = useDispatch();
     const [data, setData] = useState(null)
+    const [page, setPage] = useState(0)
+    const [totalPage, setTotalPage] = useState(0)
     const movies = useSelector(state => state.movies);
     const {loading, error} = movies;
+    const user = useSelector(state => state.user);
+    const {isLoggedIn} = user;
 
     const location = useLocation()
 
@@ -29,7 +33,9 @@ const HomeScreen = (props) => {
             else if(location.pathname === '/discover/latest') {
                 movies = await trendingMovies();            
             }
-            console.log(movies)
+            setData(movies.results)
+            setPage(movies.page)
+            setTotalPage(movies.total_pages)
         }
         fetchData();
     }, [location.pathname])
@@ -46,7 +52,7 @@ const HomeScreen = (props) => {
               <Row>
                 {data && data.map(movie => (
                     <Col key={movie.id} sm={12} md={6} lg={4} xl={3}>
-                      <Movie movie={movie} />
+                      <Movie movie={movie} page totalPage isLoggedIn isFavouritePage={false}/>
                     </Col>
                 ))}
               </Row>

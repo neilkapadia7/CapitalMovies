@@ -4,6 +4,7 @@ import Login from './components/auth/Login';
 import Header from './components/general/Header';
 import Footer from './components/general/Footer';
 import HomeScreen from './components/movies/home';
+import FavouritesScreen from './components/movies/Favourites';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path='/discover' component={HomeScreen} exact/>
           <Route path='/discover/popular' component={HomeScreen} exact/>
           <Route path='/discover/latest' component={HomeScreen} exact/>
-          <Route path='/discover/favourites' component={HomeScreen} exact/>
+          <Route path='/discover/favourites' component={FavouritesScreen} exact/>
         </Container>
       </main>
       <Footer />     

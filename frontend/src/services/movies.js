@@ -48,7 +48,12 @@ export const addFavourites = async (data) => {
 
 export const getFavourites = async () => {
     try {
-        const res = await axios.get('api/favourites/get')
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const res = await axios.post('http://localhost:3000/api/favourites/get')
         console.log('Backend Res Favourites:::', res)
         return res.data;
             

@@ -12,7 +12,7 @@ router.post('/add',
     addFavourites
 );
 
-router.get('/get',
+router.post('/get',
     Auth,
     getFavourites
 );

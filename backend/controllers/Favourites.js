@@ -34,10 +34,11 @@ module.exports = {
     },
 
 /**
-    @route GET api/favourites/get
+    @route POST api/favourites/get
     @description Get Favourites
 */ 
-    async getFavourites (req, res) {    
+    async getFavourites (req, res) {  
+        console.log('Triggered')  
         try {
             const checkUser = await User.findOne({_id: req.user._id});
             if(!checkUser) 
