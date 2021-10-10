@@ -14,6 +14,7 @@ export const userSignIn = async (data) => {
             
     } catch (err) {
         console.log(err)
+        return err
     }
 }
 

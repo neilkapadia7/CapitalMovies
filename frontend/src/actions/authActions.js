@@ -7,6 +7,7 @@ export const userSignIn = (payload) => {
 }
 
 export const userSignInResult = (payload) => {
+    localStorage.setItem('userInfo', JSON.stringify(payload));
     return {
         type: USER_SIGNIN_RESULT,
         payload

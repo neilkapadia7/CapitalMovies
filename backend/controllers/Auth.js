@@ -55,7 +55,7 @@ module.exports = {
 
             let checkPassword = await checkUser.matchPassword(req.body.password)
             if(!checkPassword)
-                return Responder.respondWithUnauthorised(req, res, "Invalid Password");
+                return Responder.respondWithFalseSuccess(req, res, "Invalid Password");
         
             let token = Token.generateToken(checkUser._id);
             checkUser.token = token;

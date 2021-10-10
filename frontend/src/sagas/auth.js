@@ -4,22 +4,18 @@ import * as AuthService from '../services/auth'
 import * as AuthActions from '../actions/authActions'
 
 export function* userSignInSaga(param) {
-    let payload = {
-        status:false,
-        message: 'Could not fetch data'
-    }
     try {
-        const response = yield call(AuthService.userSignIn, param);
-        
-        if(response) {
-          console.log('Response SAGA:::', response)
-
-          yield put(AuthActions.userSignInResult(response.res.data))
+        const response = yield call(AuthService.userSignIn, param.payload);
+        if(!response.status) {
+          yield put(AuthActions.userSignInError(response.message ? response.message : response.data))
+        }
+        else {
+          yield put(AuthActions.userSignInResult(response.data))
         }
     
       } catch (error) {
         console.log(error)
-        yield put(AuthActions.userSignInError({...payload}))
+        yield put(AuthActions.userSignInError(error.message))
       }
 }
 
@@ -29,7 +25,7 @@ export function* userSignUpSaga(param) {
         message: 'Something Went Wrong'
     }
     try {
-        const response = yield call(AuthService.userSignUp, param);
+        const response = yield call(AuthService.userSignUp, param.payload);
         
         if(response) {
           console.log('Response SAGA:::', response)
