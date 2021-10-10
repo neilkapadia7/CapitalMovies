@@ -19,7 +19,7 @@ export function* userSignInSaga(param) {
     
       } catch (error) {
         console.log(error)
-        yield put(AuthActions.userSignInResult({...payload}))
+        yield put(AuthActions.userSignInError({...payload}))
       }
 }
 
@@ -39,7 +39,7 @@ export function* userSignUpSaga(param) {
     
       } catch (error) {
         console.log(error)
-        yield put(AuthActions.userSignInResult({...payload}))
+        yield put(AuthActions.userSignInError({...payload}))
       }
 }
 

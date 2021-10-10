@@ -1,4 +1,4 @@
-import {USER_SIGNIN, USER_SIGNUP, USER_LOGOUT, USER_SIGNIN_RESULT, USER_SIGNUP_RESULT} from '../constants/authConstants'
+import {USER_SIGNIN, USER_SIGNUP, USER_LOGOUT, USER_SIGNIN_RESULT, USER_SIGNUP_RESULT, USER_SIGNUP_ERROR, USER_SIGNIN_ERROR} from '../constants/authConstants'
 export const userSignIn = (payload) => {
     return {
         type: USER_SIGNIN,
@@ -26,6 +26,14 @@ export const userSignUpResult = (payload) => {
         payload
     }
 }
+
+export const userSignInError = (payload) => {
+    return {
+        type: USER_SIGNIN_ERROR,
+        payload
+    }
+}
+
 
 
 export const logout = () => {
