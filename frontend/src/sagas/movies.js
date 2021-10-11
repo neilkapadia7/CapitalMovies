@@ -10,7 +10,7 @@ export function* getMoviesSaga() {
           yield put(MoviesAction.moviesError(response.message ? response.message : response.data))
         }
         else {
-          yield put(MoviesAction.moviesResult(response.favourites))
+          yield put(MoviesAction.moviesResult(response.data.favourites))
         }
     
       } catch (error) {
