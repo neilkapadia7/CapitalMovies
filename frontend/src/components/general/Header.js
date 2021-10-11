@@ -50,9 +50,6 @@ const Header = (props) => {
                         </LinkContainer>  
                     </NavDropdown>
 
-                    <LinkContainer to='/mentors'  >
-                      <Nav.Link>Favourites</Nav.Link>
-                    </LinkContainer>
                     <Nav.Link onClick={() => 
                         dispatch(logout())
                     }>Logout</Nav.Link>

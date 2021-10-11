@@ -35,7 +35,7 @@ const Movies = ({movie, isLoggedIn, isFavouritePage}) => {
             <Card.Text as='h3'>
                 {movie.name}
             </Card.Text>
-            {isLoggedIn && !isFavouritePage && <p style={{color: 'red', paddingTop: '20px'}} onClick={() => dispatch(addMovies(movie))}>Add to Favourite</p>}
+            {isLoggedIn && !isFavouritePage && <p style={{color: 'red', paddingTop: '20px', cursor:'pointer'}} onClick={() => dispatch(addMovies(movie))}>Add to Favourite</p>}
         </Card.Body>
         </Card>
     )
